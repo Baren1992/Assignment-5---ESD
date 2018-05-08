@@ -66,13 +66,11 @@
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_48cpoDmZEeiuDaF5pmMQag" name="Effect" isReentrant="false">
               <language>C++</language>
               <body>// Reply to a connection message by client
-//if ( 
-serverPort.send_data(Data).send();
-//) {
+if (serverPort.send_data(Data).send()) {
 log.log( &quot;Server is sending data...&quot;);
-//} else {
-//log.log( &quot;Error sending data!&quot;);
-//}</body>
+} else {
+log.log( &quot;Error sending data!&quot;);
+}</body>
             </effect>
             <trigger xmi:type="uml:Trigger" xmi:id="_belnADmlEeiDu4JNdeoU-w" event="_de7hYDmVEeiuDaF5pmMQag" port="_J80-QDmWEeiuDaF5pmMQag"/>
           </transition>
@@ -252,10 +250,9 @@ log.log( &quot;Connection failed!&quot;);
               <language>C++</language>
               <body>// Reply to a send data message by server
 log.log(&quot;Data is sending...&quot;);
-String data = Data;
 if ( clientPort.ack_data().send() ) {
+log.log( &quot;Client acknowleged data:&quot;);
 log.log(data);
-log.log( &quot;Client acknowleged data!&quot;);
 } else {
 log.log( &quot;Error acknowledging data!&quot;);
 }</body>
